@@ -1,0 +1,15 @@
+<h1>All artworks</h1>
+<% if @artworks.present? %>
+<% @artworks.each do |artwork| %>
+  <div class="artwork">
+  <%= image_tag artwork.image, style: "width: 200px; height: auto;" if artwork.image.attached? %>
+    <p><strong>Artist Name:</strong> <%= artwork.artist_name %></p>
+    <p><strong>Title:</strong> <%= artwork.title %></p>
+    <p><strong>Medium:</strong> <%= artwork.medium %></p>
+  </div>
+<% end %>
+<% else %>
+  <p>No artworks available.</p>
+  <% end %>
+
+<button><%= link_to "Add an artwork", new_artwork_path %></button>

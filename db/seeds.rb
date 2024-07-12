@@ -32,31 +32,31 @@ user3 = User.create!(
   city: "Chicago"
 )
 
-# Create Artworks
-puts "Creating artworks..."
-artwork1 = Artwork.create!(
-  artist_name: "Artist One",
-  title: "Sunset Dreams",
-  medium: "Oil on Canvas",
-  price_per_month: 50.00,
-  user: user1
-)
+# # Create Artworks
+# puts "Creating artworks..."
+# artwork1 = Artwork.create!(
+#   artist_name: "Artist One",
+#   title: "Sunset Dreams",
+#   medium: "Oil on Canvas",
+#   price_per_month: 50.00,
+#   user: user1
+# )
 
-artwork2 = Artwork.create!(
-  artist_name: "Artist One",
-  title: "Urban Jungle",
-  medium: "Acrylic on Wood",
-  price_per_month: 40.00,
-  user: user1
-)
+# artwork2 = Artwork.create!(
+#   artist_name: "Artist One",
+#   title: "Urban Jungle",
+#   medium: "Acrylic on Wood",
+#   price_per_month: 40.00,
+#   user: user1
+# )
 
-artwork3 = Artwork.create!(
-  artist_name: "Artist Two",
-  title: "Abstract Thoughts",
-  medium: "Mixed Media",
-  price_per_month: 60.00,
-  user: user2
-)
+# artwork3 = Artwork.create!(
+#   artist_name: "Artist Two",
+#   title: "Abstract Thoughts",
+#   medium: "Mixed Media",
+#   price_per_month: 60.00,
+#   user: user2
+# )
 
 # Attach images to artworks
 # puts "Attaching images to artworks..."

@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
     @artworks = Artwork.all
@@ -10,6 +10,7 @@ class ArtworksController < ApplicationController
   end
 
   def create
+    puts "Params received: #{params.inspect}"
     @artwork = current_user.artworks.build(artwork_params)
     if @artwork.save
       redirect_to artworks_path, notice: 'Artwork was successfully created.'

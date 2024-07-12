@@ -1,43 +1,52 @@
-<h1>Create New Artwork</h1>
-
-<%= form_with(model: @artwork, local: true) do |form| %>
-  <% if @artwork.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
-      <ul>
-        <% @artwork.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Create New Artwork</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with(model: @artwork, local: true, class: "needs-validation", novalidate: true) do |form| %>
+        <% if @artwork.errors.any? %>
+          <div class="alert alert-danger" id="error_explanation">
+            <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
+            <ul>
+              <% @artwork.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="mb-3">
+          <%= form.label :artist_name, class: "form-label" %>
+          <%= form.text_field :artist_name, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :title, class: "form-label" %>
+          <%= form.text_field :title, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :medium, class: "form-label" %>
+          <%= form.text_field :medium, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :price_per_month, class: "form-label" %>
+          <%= form.number_field :price_per_month, step: 0.01, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :image, class: "form-label" %>
+          <%= form.file_field :image, class: "form-control", accept: "image/*" %>
+        </div>
+
+        <div class="mb-3 text-center">
+          <%= form.submit "Create Artwork", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <div class="text-center">
+        <%= link_to 'Back to Artworks', artworks_path, class: "btn btn-secondary" %>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :artist_name %>
-    <%= form.text_field :artist_name %>
   </div>
-
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :medium %>
-    <%= form.text_field :medium %>
-  </div>
-
-  <div>
-    <%= form.label :price_per_month %>
-    <%= form.number_field :price_per_month, step: 0.01 %>
-  </div>
-
-  <div>
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <%= form.submit "Create Artwork" %>
-<% end %>
-
-<%= link_to 'Back to Artworks', artworks_path %>
+</div>

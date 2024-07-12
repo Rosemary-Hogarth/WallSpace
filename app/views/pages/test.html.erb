@@ -1,0 +1,15 @@
+<!-- app/views/pages/test.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Logout</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <h1>Test Logout</h1>
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+</body>
+</html>

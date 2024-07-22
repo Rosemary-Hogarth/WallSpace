@@ -1,15 +1,30 @@
-<h1>All artworks</h1>
-<% if @artworks.present? %>
-<% @artworks.each do |artwork| %>
-  <div class="artwork">
-  <%= image_tag artwork.image, style: "width: 200px; height: auto;" if artwork.image.attached? %>
-    <p><strong>Artist Name:</strong> <%= artwork.artist_name %></p>
-    <p><strong>Title:</strong> <%= artwork.title %></p>
-    <p><strong>Medium:</strong> <%= artwork.medium %></p>
+<div class="container">
+  <div class="filter">
+    <ul id="filter-navbar" class="nav nav-tabs custom-tabs custom-filter-navbar d-flex justify-content-center mt-4 mb-5">
+      <li class="nav-item">
+        <%= link_to "All", artworks_path, class: "nav-link #{params[:filter].blank? ? 'active' : ''}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Artist", artworks_path(filter: 'artist'), class: "nav-link #{params[:filter] == 'artist' ? 'active' : ''}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Medium", artworks_path(filter: 'medium'), class: "nav-link #{params[:filter] == 'medium' ? 'active' : ''}" %>
+      </li>
+    </ul>
   </div>
-<% end %>
-<% else %>
-  <p>No artworks available.</p>
-  <% end %>
 
-<button><%= link_to "Add an artwork", new_artwork_path %></button>
+  <div id="artworks-container">
+    <% if @artworks.is_a?(Hash) %>
+      <% @artworks.each do |key, artworks| %>
+        <h3><%= key %></h3>
+        <div class="row">
+          <%= render partial: 'artwork', collection: artworks %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="row">
+        <%= render partial: 'artwork', collection: @artworks %>
+      </div>
+    <% end %>
+  </div>
+</div>

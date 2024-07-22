@@ -7,6 +7,7 @@ gem "simple_form"
 gem 'sassc-rails'
 gem 'bootstrap', '~> 5.3.3'
 gem "font-awesome-sass", "~> 6.1"
+gem 'image_processing', '~> 1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"

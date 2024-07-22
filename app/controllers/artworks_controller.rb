@@ -3,6 +3,13 @@ class ArtworksController < ApplicationController
 
   def index
     @artworks = Artwork.all
+
+    case params[:filter]
+    when 'artist'
+      @artworks = @artworks.group_by(&:artist_name)
+    when 'medium'
+      @artworks = @artworks.group_by(&:medium)
+    end
   end
 
   def new

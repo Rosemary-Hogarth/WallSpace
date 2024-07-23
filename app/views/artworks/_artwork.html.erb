@@ -1,8 +1,11 @@
-<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-  <div class="card">
-    <%= image_tag artwork.image, class: "card-img-top", alt: artwork.title if artwork.image.attached? %>
+<div class="col">
+  <div class="card h-100">
+    <% if artwork.image.attached? %>
+      <%= image_tag artwork.image, class: "card-img-top", alt: artwork.title %>
+    <% end %>
     <div class="card-body">
-      <p class="card-text"><%= artwork.title %></p>
+      <h5 class="card-title"><%= artwork.title %></h5>
+      <p class="card-text"><%= artwork.artist_name %></p>
       <p class="card-text"><%= artwork.medium %></p>
     </div>
   </div>

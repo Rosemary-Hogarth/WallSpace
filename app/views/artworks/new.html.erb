@@ -26,7 +26,7 @@
 
         <div class="mb-3">
           <%= form.label :medium, class: "form-label" %>
-          <%= form.text_field :medium, class: "form-control", required: true %>
+          <%= form.select :medium, options_for_select(['Painting', 'Photography', 'Drawing', 'Mixed Media']), { prompt: 'Select a medium' }, { class: "form-select", required: true } %>
         </div>
 
         <div class="mb-3">

@@ -1,25 +1,24 @@
-.grid {
-  width: 100%;
-  position: relative;
+body {
+  padding: 0;
+  margin: 0;
+}
+.header {
+  background-color: #DBDAE0;
+height: 150px;
 }
 
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
+.app-name {
+  margin-left: 20px;
+  padding-top: 20px;
+  font-size: 40px;
 }
 
-.grid-sizer,
-.grid-item {
-  width: 33.333%;
+.call-to-action {
+  margin-top: 20px;
+  font-size: 25px;
+  margin-left: 20px;
+  letter-spacing: 2px;
 }
-
-.grid-item {
-  float: left;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
 .card {
   width: 100%;
   border: none !important;
@@ -32,6 +31,12 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
 .custom-tabs .nav-link {
@@ -60,7 +65,7 @@
 }
 
 .custom-tabs .nav-link.active::after {
-  background-color: #5C6AA7;
+  background-color: black;
 }
 
 .custom-tabs .nav-link:hover {
@@ -89,18 +94,6 @@
 .custom-filter-navbar .nav-link:hover {
   border: none;
 }
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .grid-sizer,
-  .grid-item {
-    width: 50%;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid-sizer,
-  .grid-item {
-    width: 100%;
-  }
+.hidden {
+  display: none;
 }

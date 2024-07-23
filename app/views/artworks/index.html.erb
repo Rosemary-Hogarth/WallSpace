@@ -1,14 +1,25 @@
-<div class="container">
+<div class="header">
+  <div class="app-name">Wallspace</div>
+  <div class="call-to-action">Browse</div>
+</div>
+
+<div class="container" data-controller="artwork-filter">
   <div class="filter">
     <ul id="filter-navbar" class="nav nav-tabs custom-tabs custom-filter-navbar d-flex justify-content-center mt-4 mb-5">
       <li class="nav-item">
-        <%= link_to "All", artworks_path, class: "nav-link #{params[:filter].blank? ? 'active' : ''}" %>
+        <%= link_to "All", artworks_path, class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "all", artwork_filter_target: "filter" } %>
       </li>
       <li class="nav-item">
-        <%= link_to "Artist", artworks_path(filter: 'artist'), class: "nav-link #{params[:filter] == 'artist' ? 'active' : ''}" %>
+        <%= link_to "Artist", artworks_path(filter: 'artist'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "artist", artwork_filter_target: "filter" } %>
       </li>
       <li class="nav-item">
-        <%= link_to "Medium", artworks_path(filter: 'medium'), class: "nav-link #{params[:filter] == 'medium' ? 'active' : ''}" %>
+        <%= link_to "Painting", artworks_path(filter: 'painting'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "painting", artwork_filter_target: "filter" } %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Photography", artworks_path(filter: 'photography'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "photography", artwork_filter_target: "filter" } %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Drawing", artworks_path(filter: 'drawing'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "drawing", artwork_filter_target: "filter" } %>
       </li>
     </ul>
   </div>
@@ -16,14 +27,14 @@
   <div id="artworks-container">
     <% if @artworks.is_a?(Hash) %>
       <% @artworks.each do |key, artworks| %>
-        <h3><%= key %></h3>
-        <div class="row">
-          <%= render partial: 'artwork', collection: artworks %>
+        <h4 class="group-header" data-artwork-filter-target="groupHeader"><%= key %></h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+          <%= render partial: 'artwork', collection: artworks, as: :artwork %>
         </div>
       <% end %>
     <% else %>
-      <div class="row">
-        <%= render partial: 'artwork', collection: @artworks %>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <%= render partial: 'artwork', collection: @artworks, as: :artwork %>
       </div>
     <% end %>
   </div>

@@ -7,8 +7,9 @@ class ArtworksController < ApplicationController
     case params[:filter]
     when 'artist'
       @artworks = @artworks.group_by(&:artist_name)
-    when 'medium'
-      @artworks = @artworks.group_by(&:medium)
+    when 'painting', 'photography', 'drawing'
+      @artworks = @artworks.where(medium: params[:filter].capitalize)
+      Rails.logger.debug "Filtered artworks count: #{@artworks.count}"
     end
   end
 

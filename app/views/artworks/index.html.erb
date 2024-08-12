@@ -1,16 +1,26 @@
 <div class="header">
-  <div class="app-name">Wallspace</div>
-  <div class="call-to-action">Browse</div>
+  <div class="app-name">WallSpace</div>
+  <!-- form -->
+  <div class="search-container">
+    <%= form_with url: artworks_path, method: :get, class: "search-form", local: true do %>
+  <div class="input-group">
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search" %>
+    <div class="input-group-append">
+      <%= link_to "x", artworks_path, class: "btn btn-clear" %>
+      <%= submit_tag "Search", name: "", class: "btn btn-search" %>
+    </div>
+  </div>
+<% end %>
+  </div>
+  <!--end form -->
 </div>
 
+<!--Filters -->
 <div class="container" data-controller="artwork-filter">
   <div class="filter">
     <ul id="filter-navbar" class="nav nav-tabs custom-tabs custom-filter-navbar d-flex justify-content-center mt-4 mb-5">
       <li class="nav-item">
         <%= link_to "All", artworks_path, class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "all", artwork_filter_target: "filter" } %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Artist", artworks_path(filter: 'artist'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "artist", artwork_filter_target: "filter" } %>
       </li>
       <li class="nav-item">
         <%= link_to "Painting", artworks_path(filter: 'painting'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "painting", artwork_filter_target: "filter" } %>
@@ -21,21 +31,36 @@
       <li class="nav-item">
         <%= link_to "Drawing", artworks_path(filter: 'drawing'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "drawing", artwork_filter_target: "filter" } %>
       </li>
+      <li class="nav-item">
+        <%= link_to "Mixed media", artworks_path(filter: 'mixed media'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "mixed media", artwork_filter_target: "filter" } %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sculpture", artworks_path(filter: 'sculpture'), class: "nav-link", data: { action: "click->artwork-filter#toggleInfo", filter: "sculpture", artwork_filter_target: "filter" } %>
+      </li>
     </ul>
   </div>
 
-  <div id="artworks-container">
-    <% if @artworks.is_a?(Hash) %>
-      <% @artworks.each do |key, artworks| %>
-        <h4 class="group-header" data-artwork-filter-target="groupHeader"><%= key %></h4>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-          <%= render partial: 'artwork', collection: artworks, as: :artwork %>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <%= render partial: 'artwork', collection: @artworks, as: :artwork %>
+<!--Artworks -->
+ <div id="artworks-container">
+  <% # Check if @artworks is a Hash %>
+  <% if @artworks.is_a?(Hash) %>
+    <% # If @artworks is a Hash, iterate over each key-value pair %>
+    <% @artworks.each do |key, artworks| %>
+      <% # Render a header for each group of artworks, using the key as the header text %>
+      <h4 class="group-header" data-artwork-filter-target="groupHeader"><%= key %></h4>
+      <% # Create a Bootstrap row with responsive columns to display artworks %>
+      <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        <% # Render the 'artwork' partial for each artwork in the current group %>
+        <%= render partial: 'artwork', collection: artworks, as: :artwork %>
       </div>
     <% end %>
-  </div>
+  <% else %>
+    <% # If @artworks is not a Hash, treat it as a collection of artworks %>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% # Render the 'artwork' partial for each artwork in the collection %>
+      <%= render partial: 'artwork', collection: @artworks, as: :artwork %>
+    </div>
+  <% end %>
+</div>
+
 </div>

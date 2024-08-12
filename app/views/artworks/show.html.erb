@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <p class="card-text"><%= @artwork.artist_name %></p>
+  <div class="card h-100">
+    <div class="card-body">
+      <h5 class="card-title"><%= @artwork.title %></h5>
+      <p class="card-text"><%= @artwork.medium %></p>
+      <p class="card-text">Width: <%= @artwork.width %> cm</p>
+      <p class="card-text">Height: <%= @artwork.height %> cm</p>
+      <p class="card-text"><%= @artwork.price_per_month %> Euros per month</p>
+    </div>
+    <% if @artwork.image.attached? %>
+      <%= image_tag @artwork.image, class: "card-img-top", alt: @artwork.title %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
+  </div>
+</div>

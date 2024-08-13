@@ -6,10 +6,12 @@
       <% end %>
       <%= link_to "+", artwork_path(artwork), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link" %>
     <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= artwork.title %></h5>
-      <p class="card-text"><%= artwork.artist_name %></p>
-      <p class="card-text"><%= artwork.medium %></p>
+      <div class="card-info">
+      <div class="card-body">
+        <h5 class="card-title"><%= artwork.title %></h5>
+        <p class="card-text"><%= artwork.artist_name %></p>
+      </div>
+      <p class="card-medium"><%= artwork.medium %></p>
     </div>
   </div>
 </div>

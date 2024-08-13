@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <div class="profile-container">
+    <div class="avatar-and-name-container">
+      <div class="avatar-container">
+        <%= image_tag "https://api.dicebear.com/9.x/pixel-art/svg?seed=#{CGI.escape(@artwork.artist_name)}", alt: 'avatar', class: 'avatar-img-profile' %>
+      </div>
+      <div class="artist-info">
+        <h2><%= @artwork.artist_name %></h2>
+      </div>
+    </div>
+
+    <div class="links">
+      <%= link_to "Edit profile", new_artwork_path, class: "btn btn-primary" %>
+      <%= link_to "+", new_artwork_path, class: "btn btn-warning" %>
+    </div>
+
+    <div class="bio"></div>
+
+    <div class="artist-artworks">
+      <h3>Artworks by <%= @artwork.artist_name %></h3>
+      <div class="artworks-grid">
+        <% @artworks.each do |artwork| %>
+          <div class="artwork-thumbnail">
+            <%= image_tag artwork.image if artwork.image.attached? %>
+            <p><%= artwork.title %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

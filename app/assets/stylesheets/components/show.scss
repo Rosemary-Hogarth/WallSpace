@@ -1,3 +1,4 @@
+// header
 .avatar-img {
   width: 40px;
   height: 40px;
@@ -14,9 +15,33 @@
 
 .avatar-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
+
+.avatar-and-info {
+  display: flex;
+  align-items: center;
+}
+
+.view-profile {
+  font-size: 0.9em;
+  color: #5C6AA6;
+  cursor: pointer;
+}
+
+.favourite {
+  font-size: 1.5rem;
+}
+
+.artist-info-show {
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+}
+
+// info
 .card-text-show {
   margin: 0;
   padding: 4px;
@@ -32,24 +57,13 @@
   font-size: 40px;
 }
 
-.artist-info-show {
-  display: flex;
-  flex-direction: column;
-  font-weight: 300;
-}
-
-
-.view-profile {
-  font-size: 0.9em;
-  color: #5C6AA6;
-  cursor: pointer;
-}
-
 .card-body-show {
   margin-top: 50px;
   margin-bottom: 50px;
   font-weight: 300;
 }
+
+// page layers
 
 .artist-page {
   position: relative;
@@ -76,7 +90,7 @@
   background-color: white;
   border-radius: 20px 20px 0 0;
   margin-top: 20vh; /* Adjust this value to control how far down the container appears */
-  min-height: 70vh; /* Ensures the container covers the bottom of the page */
+  min-height: 100vh; /* Ensures the container covers the bottom of the page */
   padding: 30px;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid black;

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :artworks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
+   get '/profile/:id', to: 'profiles#show', as: 'profile'
   get '/profile', to: 'profiles#show'
   # Defines the root path route ("/")
 get '/test', to: 'pages#test'

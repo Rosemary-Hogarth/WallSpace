@@ -1,17 +1,40 @@
-<div class="container mt-5">
-  <p class="card-text"><%= @artwork.artist_name %></p>
+
+
+
+<div class="artist-page">
+ <div class="background-image" style="<%= "background-image: url(#{url_for(@artwork.image)})" if @artwork.image.attached? %>"></div>
+  <div class="content-container">
+
+<div class="avatar-container">
+  <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= image_tag "https://api.dicebear.com/9.x/pixel-art/svg?seed=#{CGI.escape(current_user.email)}", alt: 'avatar', class: 'avatar-img' %>
+  </a>
+  <div class="artist-info-show">
+    <p class="card-text-show"><%= @artwork.artist_name %></p>
+    <%= link_to "View profile", profile_path, class: "card-text view-profile" %>
+  </div>
+</div>
+
+
+
+
+
   <div class="card h-100">
-    <div class="card-body">
-      <h5 class="card-title"><%= @artwork.title %></h5>
-      <p class="card-text"><%= @artwork.medium %></p>
-      <p class="card-text">Width: <%= @artwork.width %> cm</p>
-      <p class="card-text">Height: <%= @artwork.height %> cm</p>
-      <p class="card-text"><%= @artwork.price_per_month %> Euros per month</p>
+    <div class="card-body-show">
+      <h5 class="card-title-show"><%= @artwork.title %></h5>
+      <p class="card-text-show medium">Medium: <%= @artwork.medium.capitalize %></p>
+      <p class="card-text-show width">Width: <%= @artwork.width %> cm</p>
+      <p class="card-text-show height">Height: <%= @artwork.height %> cm</p>
+      <p class="card-text-show price">Price/month: <%= @artwork.price_per_month %> Euros</p>
     </div>
     <% if @artwork.image.attached? %>
-      <%= image_tag @artwork.image, class: "card-img-top", alt: @artwork.title %>
+      <%= image_tag @artwork.image, class: "card-img-top-show", alt: @artwork.title %>
     <% else %>
       <p>No image available</p>
     <% end %>
   </div>
+  <%= link_to "Back to artworks", artworks_path, class: "btn btn-warning mt-5" %>
 </div>
+
+    <!-- Your artwork info, images, and details go here -->
+  </div>

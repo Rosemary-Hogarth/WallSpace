@@ -6,6 +6,11 @@
       </div>
       <div class="artist-info">
         <h2><%= @artwork.artist_name %></h2>
+          <% if @artwork.user %>
+            <p><%= @artwork.user.email %></p>
+          <% else %>
+            <p>Email not available</p>
+          <% end %>
       </div>
     </div>
 

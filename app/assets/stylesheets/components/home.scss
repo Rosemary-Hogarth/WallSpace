@@ -1,0 +1,16 @@
+.btn-home {
+  background-color: bisque;
+  border: 1px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+  .btn-home a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .notice, .alert {
+    padding: 0 !important;
+    margin: 0 !important;
+  }

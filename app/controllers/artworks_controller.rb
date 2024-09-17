@@ -15,6 +15,19 @@ class ArtworksController < ApplicationController
     if params[:filter].present?
       @artworks = @artworks.where(medium: params[:filter].capitalize)
     end
+
+    if @artworks.empty?
+      flash.now[:alert] = if params[:query].present? && params[:filter].present?
+                            "No artworks found matching '#{params[:query]}' in the '#{params[:filter].capitalize}' category."
+                          elsif params[:query].present?
+                            "No artworks found matching '#{params[:query]}'."
+                          elsif params[:filter].present?
+                            "No artworks found in the '#{params[:filter].capitalize}' category."
+                          else
+                            "No artworks found."
+                          end
+    end
+
   end
 
   def show
@@ -52,9 +65,4 @@ class ArtworksController < ApplicationController
     params.require(:artwork).permit(:artist_name, :title, :medium, :price_per_month, :image)
   end
 
-  def authenticate_user!
-    unless current_user
-      redirect_to new_user_session_path, alert: "You must be logged in to perform this action."
-    end
-  end
 end

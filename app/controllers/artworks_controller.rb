@@ -39,6 +39,7 @@ class ArtworksController < ApplicationController
 
   def show
     @artwork = Artwork.with_attached_images.find(params[:id])
+    @artworks = Artwork.where(artist_name: @artwork.artist_name).with_attached_images
   end
 
   def new

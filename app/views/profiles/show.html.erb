@@ -19,23 +19,5 @@
     <div class="bio">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere in perferendis illum beatae fuga aspernatur quod tempora quidem, nostrum quo autem adipisci neque repudiandae vel officia sint fugit maiores quas.</div>
 
-    <div class="artist-artworks">
-      <h3>Artworks by <%= @artwork.artist_name %></h3>
-      <div class="artworks-grid">
-        <% @artworks.each do |artwork| %>
-          <div class="artwork-thumbnail">
-            <% if artwork.images.attached? %>
-              <%= image_tag artwork.images.first, alt: artwork.title %>
-            <% else %>
-              <%= image_tag 'default_artwork.jpg', alt: 'No image available' %>
-            <% end %>
-            <p><%= artwork.title %></p>
-            <p>Price: <%= number_to_currency(artwork.price_per_month, unit: "€") %>/month</p>
-          </div>
-
-        <% end %>
-
-      </div>
-    </div>
   </div>
 </div>

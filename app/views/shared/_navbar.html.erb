@@ -1,28 +1,32 @@
-   <div class="topnav">
-    <nav class="navbar  navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-      <div class="navbar-brand home-link"><%= link_to "WallSpace", root_path %></div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-4 active">
-            <a class="nav-link active "  aria-current="page" href="index.html" title="artworks"><%= link_to "Artworks", artworks_path %><span class="sr-only">(current)</span></a>
+<nav class="navbar navbar-expand-sm navbar-light custom-navbar" data-controller="hide-navbar">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <span class="home-link">WallSpace</span>
+    <% end %>
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Artworks", artworks_path, class: "nav-link active", aria_current: "page" %>
           </li>
-
-        <!--  <li class="nav-item mx-1">
-            <a class="nav-link" href="/projects.html" title="projects">Projects</a>
+          <li class="nav-item">
+            <%= link_to "Add an artwork", new_artwork_path, class: "nav-link active", aria_current: "page" %>
           </li>
-          <li class="nav-item mx-1">
-            <a class="nav-link" href="/about.html" title="about">About</a>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
           </li>
-          <li class="nav-item mx-1">
-            <a class="nav-link" href="/about.html#contact" title="contact">Contact</a>
-          </li> -->
-        </ul>
-      </div>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-</div>
+  </div>
 </nav>

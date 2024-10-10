@@ -2,7 +2,7 @@
   <h1 class="mb-4 text-center">Create New Artwork</h1>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <%= form_with(model: @artwork, local: true, class: "needs-validation", novalidate: true) do |form| %>
+      <%= form_with(model: @artwork, local: true, html: { data: { controller: "image-preview" } }) do |form| %>
         <% if @artwork.errors.any? %>
           <div class="alert alert-danger" id="error_explanation">
             <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
@@ -44,15 +44,21 @@
           <%= form.number_field :price_per_month, step: 0.01, class: "form-control", required: true %>
         </div>
 
-        <div class="mb-3">
-          <%= form.label :images, "Upload Images", class: "form-label" %>
-          <%= form.file_field :images, multiple: true, class: "form-control", accept: "image/*" %>
-        </div>
+         <div class="mb-3">
+            <%= form.label :images, "Upload Images", class: "form-label" %>
+            <%= form.file_field :images, multiple: true, class: "form-control", id: "artwork-images",
+             data: {
+                image_preview_target: "input",
+                action: "change->image-preview#preview"
+        }  %>
+  </div>
 
-        <div class="mb-3 text-center">
-          <%= form.submit "Create Artwork", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+  <div id="image-preview"   data-image-preview-target="preview" class="mb-3"></div>
+
+  <div class="mb-3 text-center">
+    <%= form.submit "Create Artwork", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
       <div class="text-center">
         <%= link_to 'Back to Artworks', artworks_path, class: "btn btn-secondary" %>

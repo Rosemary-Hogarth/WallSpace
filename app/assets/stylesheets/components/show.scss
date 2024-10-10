@@ -89,11 +89,11 @@
   z-index: 2;
   background-color: white;
   border-radius: 20px 20px 0 0;
-  margin-top: 20vh; /* Adjust this value to control how far down the container appears */
-  min-height: 100vh; /* Ensures the container covers the bottom of the page */
+  margin-top: 20vh;
+  min-height: 100vh;
   padding: 30px;
-  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid black;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+
 }
 
 img {

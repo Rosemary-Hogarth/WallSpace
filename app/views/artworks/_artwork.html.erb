@@ -1,17 +1,21 @@
-<div class="col" data-artwork-filter-target="artworkInfo" data-medium="<%= artwork.medium.downcase %>" data-artist="<%= artwork.artist_name.downcase %>">
-  <div class="card h-100">
-    <% if artwork.image.attached? %>
-      <%= link_to artwork_path(artwork) do %>
-        <%= image_tag artwork.image, class: "card-img-top", alt: artwork.title %>
-      <% end %>
-      <%= link_to "+", artwork_path(artwork), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link" %>
+<div class="col" data-artwork-filter-target="artworkInfo" data-medium="<%= artwork.medium.downcase %>" data-artist="<%= artwork.artist_name.downcase %>"
+ <div class="card h-100">
+  <%= link_to artwork_path(artwork) do %>
+    <% if artwork.images.attached? && artwork.images.first.present? %>
+      <%= image_tag artwork.images.first, class: "card-img-top", alt: artwork.title %>
+    <% else %>
+      <%= image_tag "default_artwork.jpg", class: "card-img-top", alt: "No image available" %>
     <% end %>
-      <div class="card-info">
-      <div class="card-body">
-        <h5 class="card-title"><%= artwork.title %></h5>
-        <p class="card-text"><%= artwork.artist_name %></p>
-      </div>
+      <%= link_to "x", artwork_path(artwork), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link" %>
+  <% end %>
+
+  <div class="card-info">
+    <div class="card-body">
+      <h5 class="card-title"><%= artwork.title %></h5>
+      <p class="card-text">Artist: <%= artwork.artist_name %></p>
+      <p class="card-text">Price: <%= number_to_currency(artwork.price_per_month, unit: "€") %>/month</p>
+        <%= link_to "View", artwork_path(artwork), class: "btn btn-view-artwork" %>
+    </div>
       <p class="card-medium"><%= artwork.medium %></p>
     </div>
   </div>
-</div>

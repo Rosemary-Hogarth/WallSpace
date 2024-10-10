@@ -4,7 +4,7 @@ class ArtworksController < ApplicationController
 
 
   def index
-    @artworks = Artwork.all
+    @artworks = Artwork.all.with_attached_images
 
     # Apply search if query is present
     if params[:query].present?
@@ -13,8 +13,13 @@ class ArtworksController < ApplicationController
 
     # Apply filter if present
     if params[:filter].present?
-      @artworks = @artworks.where(medium: params[:filter].capitalize)
+      @artworks = @artworks.where("LOWER(medium) = ?", params[:filter].downcase)
     end
+
+    logger.debug "Filter applied: #{params[:filter]}"
+    logger.debug "Query applied: #{params[:query]}"
+    logger.debug "SQL query: #{@artworks.to_sql}"
+    logger.debug "Number of artworks found: #{@artworks.count}"
 
     if @artworks.empty?
       flash.now[:alert] = if params[:query].present? && params[:filter].present?
@@ -27,10 +32,13 @@ class ArtworksController < ApplicationController
                             "No artworks found."
                           end
     end
-
   end
 
+
+
+
   def show
+    @artwork = Artwork.with_attached_images.find(params[:id])
   end
 
   def new
@@ -39,10 +47,17 @@ class ArtworksController < ApplicationController
 
   def create
     puts "Params received: #{params.inspect}"
+    puts "File params: #{params[:artwork][:images].inspect}" if params[:artwork][:images]
+
     @artwork = current_user.artworks.build(artwork_params)
     if @artwork.save
+      if params[:artwork][:images].present?
+        @artwork.images.attach(params[:artwork][:images])
+      end
+      puts "Artwork saved successfully. ID: #{@artwork.id}"
       redirect_to artworks_path
     else
+       puts "Artwork failed to save. Errors: #{@artwork.errors.full_messages}"
       render :new
     end
   end
@@ -62,7 +77,7 @@ class ArtworksController < ApplicationController
   end
 
   def artwork_params
-    params.require(:artwork).permit(:artist_name, :title, :medium, :price_per_month, :image)
+    params.require(:artwork).permit(:artist_name, :title, :medium, :price_per_month, :image, :width, :height, images: [])
   end
 
 end

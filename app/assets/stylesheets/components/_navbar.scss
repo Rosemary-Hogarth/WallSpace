@@ -1,91 +1,63 @@
-
-.navbar-collapse.show {
-  background-color: #f8f9fa;
-}
-
 .navbar {
-  height: 130px;
+  background-color: #f0f0f0;
+  height: 80px;
 }
 
 .navbar-brand {
-  position: relative;
-  top: -15px;
-  font-size: 50px !important;
+  font-size: 30px !important;
+}
+
+.home-link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding-left: 20px;
+  background-color: #E7975F;
+
+}
+
+.navbar-nav {
+  align-items: left;
+}
+
+.nav-link {
+  color: black !important;
+  font-size: 18px;
+  margin-left: 20px;
 }
 
 .navbar-toggler {
-  position: relative;
-  top: -20px;
   border: none !important;
 }
-
-.headers {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin:0;
-}
-
-
-
-.home-link {
-  text-align: center;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 50px;
-  border-radius: 4px;
-  transition: all 0.3s ease-in-out;
-  margin-left: 30px !important;
-  margin-top: 30px;
-}
-
-.home-link:hover {
-  transform: scale(1.05);
-}
-
-.home-link a {
-  text-decoration: none;
-  color: black;
-}
-
-
 
 @media (max-width: 991px) {
   .navbar-collapse.show {
     position: absolute;
-    top: 130px;
+    top: 80px;
     left: 0;
     right: 0;
+    background-color: #f0f0f0;
     z-index: 1000;
+    padding: 15px;
   }
 
-    .navbar {
-      height: auto;
-      min-height: 130px;
-    }
-
-    .navbar-brand {
-      position: static;
-      margin-top: 15px;
-    }
-
-    .navbar-toggler {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-    }
-
-    .home-link {
-      margin-left: 15px !important;
-      margin-top: 15px;
-    }
-    .navbar-nav {
-      padding: 15px;
-    }
-
-    .search-container {
-      padding: 15px;
-    }
-
+  .navbar {
+    height: auto;
+    min-height: 80px;
   }
+
+  .navbar-brand {
+    margin-top: 10px;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .nav-link {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}

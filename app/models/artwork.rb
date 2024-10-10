@@ -1,8 +1,8 @@
 class Artwork < ApplicationRecord
   belongs_to :user
   has_many :rentals
-  has_one_attached :image
-  # has_many_attached :artworks
+  # has_one_attached :image
+  has_many_attached :images
   validates :artist_name, presence: true
   validates :title, presence: true
   validates :price_per_month, presence: true, numericality: { greater_than: 0 }
@@ -17,5 +17,13 @@ class Artwork < ApplicationRecord
 
   def normalize_medium
     self.medium = medium.downcase.strip if medium.present?
+  end
+
+  def check_image_attachment
+    if images.attached?
+      puts "Images attached successfully. Count: #{images.count}"
+    else
+      puts "No images attached to this artwork."
+    end
   end
 end

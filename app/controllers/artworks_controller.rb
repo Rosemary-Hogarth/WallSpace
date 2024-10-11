@@ -47,21 +47,16 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    puts "Params received: #{params.inspect}"
-    puts "File params: #{params[:artwork][:images].inspect}" if params[:artwork][:images]
+    @artwork = Artwork.new(artwork_params)
+    @artwork.user = current_user # Set the user to the currently logged-in user
 
-    @artwork = current_user.artworks.build(artwork_params)
     if @artwork.save
-      if params[:artwork][:images].present?
-        @artwork.images.attach(params[:artwork][:images])
-      end
-      puts "Artwork saved successfully. ID: #{@artwork.id}"
-      redirect_to artworks_path
+      redirect_to @artwork, notice: 'Artwork was successfully created.'
     else
-       puts "Artwork failed to save. Errors: #{@artwork.errors.full_messages}"
       render :new
     end
   end
+
 
   def destroy
     if @artwork.destroy

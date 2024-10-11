@@ -25,8 +25,11 @@
   <div class="card h-100">
     <div class="card-body-show">
       <h5 class="card-title-show"><%= @artwork.title %></h5>
-      <p class="card-text-show width">Width: <%= @artwork.width ? "#{@artwork.width} cm" : "Not specified" %></p>
-      <p class="card-text-show height">Height: <%= @artwork.height ? "#{@artwork.height} cm" : "Not specified" %></p>
+      <h4 class="card-medium-show"><%= @artwork.medium %></h4>
+      <div class="dimensions">
+      <p class="card-text-show width"><%= @artwork.width ? "#{@artwork.width.round} cm" : "Not specified" %> x</p>
+      <p class="card-text-show height"><%= @artwork.height ? "#{@artwork.height.round} cm" : "Not specified" %></p>
+      </div>
       <p class="card-text-show price">Price/month: <%= @artwork.price_per_month %> Euros</p>
     </div>
 
@@ -41,7 +44,7 @@
 
       <!-- All artworks by the artist -->
       <div class="artist-artworks" >
-        <h3>Artworks by <%= @artwork.artist_name %></h3>
+        <h3 class="other-artworks">Other artworks by <%= @artwork.artist_name %></h3>
         <div class="artworks-grid">
           <% @artworks.each do |artwork| %>
             <div class="artwork-thumbnail" data-artwork-id="<%= artwork.id %>">
@@ -57,6 +60,19 @@
       </div>
     </div>
 
+    <div class="artist-map">
+      <h3 class="Location-title">Pickup Location</h3>
+      <% if @map_image_url %>
+        <%= image_tag @map_image_url, alt: "Artist Location Map", class: "static-map" %>
+        <!--<%= @artist.address %>-->
+      <% else %>
+        <p>No address available for this artist.</p>
+            <p>Debug: Artist address = <%= @artist.address %></p>
+      <% end %>
+    </div>
+    <div class="buy-button">
+      <%= link_to "Add to cart", profile_path, class: "btn btn-cart mt-5" %>
+    </div>
     <%= link_to "Back to artworks", artworks_path, class: "btn btn-warning mt-5" %>
   </div>
 </div>

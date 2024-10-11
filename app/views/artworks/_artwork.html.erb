@@ -11,8 +11,8 @@
     <div class="card-info">
       <div class="card-body">
         <h5 class="card-title"><%= artwork.title %></h5>
-        <p class="card-text">Artist: <%= artwork.artist_name %></p>
-        <p class="card-text">Price: <%= number_to_currency(artwork.price_per_month, unit: "€") %>/month</p>
+        <p class="card-text"><%= artwork.artist_name %></p>
+        <p class="card-text"><%= number_to_currency(artwork.price_per_month, unit: "€") %>/month</p>
         <%= link_to "View", artwork_path(artwork), class: "btn btn-view-artwork" %>
       </div>
       <p class="card-medium"><%= artwork.medium %></p>

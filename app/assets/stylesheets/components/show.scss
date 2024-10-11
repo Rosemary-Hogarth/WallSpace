@@ -52,11 +52,34 @@
   font-size: 20px;
   font-weight: 200;
 }
+
+.card-medium-show {
+  font-size: 30px;
+  font-weight: 100;
+}
 .card-title-show {
   font-weight: 400;
   font-size: 40px;
 }
 
+.dimensions {
+  display: flex;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.card-text-show.width, .card-text-show.height {
+  padding: 0;
+}
+
+.card-text-show.height {
+  padding-left: 5px;
+}
+
+.price {
+  margin-top: 0;
+  padding:0;
+}
 .card-body-show {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -132,4 +155,44 @@ img {
 
 .thumbnail-image:hover {
   opacity: 0.8;
+}
+
+.other-artworks {
+  margin-top: 40px;
+}
+
+.Location-title {
+  margin-top: 100px;
+  font-weight: 200;
+}
+.static-map {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn.btn-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 60px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.btn.btn-cart:hover {
+    border: 1px solid black;
+}
+
+/* For screens larger than 1024px */
+@media screen and (min-width: 1024px) {
+  .btn.btn-cart {
+    max-width: 250px; /* Further limit width on larger screens */
+  }
 }

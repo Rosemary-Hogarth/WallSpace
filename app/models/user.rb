@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :artworks
   has_many :rentals
+  validates :address, presence: true, if: :is_artist?
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 

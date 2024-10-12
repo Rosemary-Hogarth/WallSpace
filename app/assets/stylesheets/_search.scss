@@ -24,15 +24,16 @@
 }
 
 .btn-search {
-  border: 1px solid #ced4da !important;
+  border: 2px solid black!important;
   background-color: #f8f9fa !important;
-  color: #495057 !important;
+  color: black !important;
   margin-left: 5px;
+  &:hover {
+    background-color: #e9ecef;
+  }
 }
 
-.btn-search:hover {
-  background-color: #e9ecef;
-}
+
 
 
 

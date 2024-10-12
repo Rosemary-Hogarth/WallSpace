@@ -7,7 +7,7 @@
 
 .hero {
   height: 150px;
-  background-color: #5C6AA7;
+  background-color: #B6C4D0;
   min-width: 100vw;
   display: flex;
   flex-direction: column;
@@ -23,11 +23,20 @@
 .hero-header {
   margin-top: 15px;
   font-size: 35px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .btn.btn-create {
   background-color: #DBDAE0;
   border-radius: 20px;
   margin-bottom: 40px;
+  border: 1px solid black;
+  font-weight: 400;
+  &:hover {
+    border: 1px solid black;
+  }
+}
+
+.form-control, .form-select {
+  border: 2px solid black !important;
 }

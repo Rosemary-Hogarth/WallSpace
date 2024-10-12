@@ -5,13 +5,13 @@
 
       <div class="avatar-container">
         <div class="avatar-and-info">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <!--<a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag "https://api.dicebear.com/9.x/pixel-art/svg?seed=#{CGI.escape(current_user.email)}", alt: 'avatar', class: 'avatar-img' %>
-          </a>
+          </a>-->
         <div class="artist-info-show">
-          <p class="card-text-show"><%= @artwork.artist_name %></p>
+          <p class="card-text-show name"><%= @artwork.artist_name %></p>
         </div>
-          <%= link_to "View artist's profile", profile_path(@artwork.id), id: "test-profile-link", class: "card-text view-profile" %>
+          <%#= link_to "View artist's profile", profile_path(@artwork.id), id: "test-profile-link", class: "card-text view-profile" %>
 
         </div>
         <div class="favourite">
@@ -19,19 +19,6 @@
         </div>
       </div>
 
-
-
-<!-- artwork details -->
-  <div class="card h-100">
-    <div class="card-body-show">
-      <h5 class="card-title-show"><%= @artwork.title %></h5>
-      <h4 class="card-medium-show"><%= @artwork.medium %></h4>
-      <div class="dimensions">
-      <p class="card-text-show width"><%= @artwork.width ? "#{@artwork.width.round} cm" : "Not specified" %> x</p>
-      <p class="card-text-show height"><%= @artwork.height ? "#{@artwork.height.round} cm" : "Not specified" %></p>
-      </div>
-      <p class="card-text-show price">Price/month: <%= @artwork.price_per_month %> Euros</p>
-    </div>
 
       <!-- Large image display -->
       <div id="largeImageContainer" class="large-image-container">
@@ -42,7 +29,40 @@
         <% end %>
       </div>
 
-      <!-- All artworks by the artist -->
+
+      <!-- artwork details -->
+    <div class="card h-100">
+      <div class="card-body-show">
+        <h5 class="card-title-show"><%= @artwork.title %></h5>
+        <h4 class="card-year-show">Year</h4>
+        <h4 class="card-text-show-medium"><%= @artwork.medium %></h4>
+        <div class="dimensions">
+        <p class="card-text-show width"><%= @artwork.width ? "#{@artwork.width.round} cm" : "Not specified" %> x</p>
+        <p class="card-text-show height"><%= @artwork.height ? "#{@artwork.height.round} cm" : "Not specified" %></p>
+        </div>
+        <p class="card-text-show-price">Price/month: <%= @artwork.price_per_month %> Euros</p>
+      </div>
+    </div>
+
+    <!-- artwork location-->
+    <div class="card-show-location">
+      <div class="artist-map">
+        <h3 class="Location-title">Pickup Location</h3>
+        <% if @map_image_url %>
+          <%= image_tag @map_image_url, alt: "Artist Location Map", class: "static-map" %>
+          <!--<%= @artist.address %>-->
+        <% else %>
+          <p>No address available for this artist.</p>
+              <p>Debug: Artist address = <%= @artist.address %></p>
+        <% end %>
+      </div>
+      <div class="buy-button">
+        <%= link_to "Add to cart", profile_path, class: "btn btn-cart mt-3" %>
+        <%= link_to "Back to artworks", artworks_path, class: "btn btn-home mt-3" %>
+      </div>
+    </div>
+
+    <!-- All artworks by the artist -->
       <div class="artist-artworks" >
         <h3 class="other-artworks">Other artworks by <%= @artwork.artist_name %></h3>
         <div class="artworks-grid">
@@ -59,21 +79,5 @@
         </div>
       </div>
     </div>
-
-    <div class="artist-map">
-      <h3 class="Location-title">Pickup Location</h3>
-      <% if @map_image_url %>
-        <%= image_tag @map_image_url, alt: "Artist Location Map", class: "static-map" %>
-        <!--<%= @artist.address %>-->
-      <% else %>
-        <p>No address available for this artist.</p>
-            <p>Debug: Artist address = <%= @artist.address %></p>
-      <% end %>
-    </div>
-    <div class="buy-button">
-      <%= link_to "Add to cart", profile_path, class: "btn btn-cart mt-5" %>
-    </div>
-    <%= link_to "Back to artworks", artworks_path, class: "btn btn-warning mt-5" %>
-  </div>
 </div>
     <!-- add more carousel items here -->

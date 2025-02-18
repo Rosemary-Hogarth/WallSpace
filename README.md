@@ -70,8 +70,9 @@ Ensure you have the following installed:
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/your-repo-url.git  
-   cd your-project  
+   git clone git@github.com:Rosemary-Hogarth/WallSpace.git  
+   cd WallSpace  
+
    ```
 2. Install dependencies:
    ```sh
